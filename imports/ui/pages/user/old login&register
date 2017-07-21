@@ -1,0 +1,13 @@
+//Register
+
+<p>Email:</p>
+<input type="text" className="email" />    <br/>
+<p>Password:</p>             <input type="password" className="password"/> <br/>
+<p>Confirm password:</p>     <input type="password" className="confPassword"/> <br/> <br/>
+<button onClick={this.sendData}>Register</button>
+
+//Login
+
+<p>Email:</p><input type="text" />    <br/>
+<p>Password:</p>             <input type="password"/> <br/><br/>
+<button>Log in</button>
