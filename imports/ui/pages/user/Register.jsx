@@ -6,20 +6,23 @@ import AutoField   from 'uniforms-unstyled/AutoField';
 const RegisterSchema = new SimpleSchema({
     email: {
         type: String,
+        label: 'E-mail: ',
         optional: false
     },
     password: {
         type: String,
+        label: 'Password: ',
         optional: false
     },
     confirmPassword: {
-        type: String
+        type: String,
+        label: 'Confirm Password: ',
     }
 });
 
 export default class Register extends React.Component {
     onSubmit(data) {
-        if(data.password != data.confirmPassword)
+        if(data.password !== data.confirmPassword)
             this.wrongPassword();
         else
             Meteor.call('user.register',data , function (err, res) {
@@ -37,8 +40,6 @@ export default class Register extends React.Component {
             <div>
             <AutoForm schema={RegisterSchema} onSubmit={this.onSubmit.bind(this)}>
                 <h1 className="text-center">Register</h1>
-                <div className="alert alert-danger hidden" role="alert" id="emailWrong">This e-mail is already used!</div>
-                <div className="alert alert-danger hidden" role="alert" id="emailWrong">Passwords don't match</div>
                 <div className="form-group">
                     <div className="col-sm-10">
                         <AutoField name="email" placeholder="Email" />

@@ -17,10 +17,13 @@ const PostsSchema = new SimpleSchema({
         type: String,
         label: "Description:",
         max: 50
+    },
+    postId: {
+        type: String,
     }
 });
 
-export default class PostCreate extends React.Component {
+export default class PostEdit extends React.Component {
 
     componentWillMount() {
         if (!Meteor.userId()) {
@@ -28,19 +31,22 @@ export default class PostCreate extends React.Component {
             //FlowRouter.go('/');
             FlowRouter.redirect('/login');
         }
+        let postForEditing = Meteor.call('post.get', "PxLFTDqQpj8NJrtx6")
+
+
     }
 
     onSubmit(data) {
-        console.log("Creating new post...");
+        console.log("Editting new post...");
         data.userId = Meteor.userId();
-        Meteor.call('post.create', data, function (err, res) {
+        Meteor.call('post.edit', data, function (err, res) {
             if (err) {
                 alert(err);
 
             }
             else {
-                alert("Post Created successfully");
-                FlowRouter.go('/post/list')
+                alert("Post edited successfully");
+                //FlowRouter.go('/post/list')
             }
         })
     }
@@ -49,10 +55,11 @@ export default class PostCreate extends React.Component {
         return (
             <div>
                 <AutoForm schema={PostsSchema} onSubmit={this.onSubmit.bind(this)}>
-                    <h2>Create post</h2>
+                    <h2>Edit post</h2>
 
                     <AutoField name="title"/>
                     <LongTextField name="description"/>
+                    <AutoField name="postId"/>
                     <div>
                         <SubmitField/>
                     </div>

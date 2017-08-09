@@ -1,19 +1,20 @@
-import SimpleSchema from 'simpl-schema';
-
-const SchemaPosts = new SimpleSchema ({
-    title:{
+import SimpleSchema from 'simpl-schema'
+const PostsSchema = new SimpleSchema({
+    title: {
         type: String,
-        min: 0
+        label: "Title:",
+        max:50,
     },
-    description:{
-        type: String
+    description: {
+        type: String,
+        label: "Description:",
+        max:50
     },
-    createdAt:{
-        type: Date
+    createdAt: {
+        type: Date,
     },
-    userId:{
+    userId : {
         type: String
     }
 });
-
-export default SchemaPosts
+export default PostsSchema;
